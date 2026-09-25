@@ -1,0 +1,38 @@
+name: Sync LocalFlow release
+on:
+  schedule:
+    - cron: '17 * * * *'
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: sync-cask
+  cancel-in-progress: false
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - name: Download latest release cask
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          if ! gh release view --repo brunovskyoliver/local_flow --json tagName > "$RUNNER_TEMP/release.json"; then
+            echo 'No accessible published release. Leaving the tap unchanged.'
+            exit 0
+          fi
+          tag="$(jq -r .tagName "$RUNNER_TEMP/release.json")"
+          gh release download "$tag" --repo brunovskyoliver/local_flow \
+            --pattern localflow.rb --dir "$RUNNER_TEMP/cask"
+          ruby -c "$RUNNER_TEMP/cask/localflow.rb"
+          mkdir -p Casks
+          cp "$RUNNER_TEMP/cask/localflow.rb" Casks/localflow.rb
+      - name: Commit cask update
+        run: |
+          git add Casks
+          if git diff --cached --quiet; then exit 0; fi
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git commit -m 'Update LocalFlow cask from latest release'
+          git push origin HEAD:main
