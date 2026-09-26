@@ -1,7 +1,6 @@
 # LocalFlow Homebrew tap
 
-The first application release is being prepared. Once it is published and the
-cask is synced, install LocalFlow with:
+Install LocalFlow on Apple Silicon with:
 
 ```sh
 brew install --cask brunovskyoliver/tap/localflow
@@ -19,5 +18,4 @@ Updates may require renewed approval and privacy permissions.
 The sync workflow checks the latest public LocalFlow release hourly. It downloads
 that release's generated `localflow.rb` and commits it to `Casks/localflow.rb`.
 It can also be started manually from the Actions tab. No cross-repository token
-or Apple signing credentials are required. Until the first release exists,
-there is no installable cask.
+or Apple signing credentials are required.
