@@ -1,6 +1,6 @@
 cask "localflow" do
-  version "0.2.0"
-  sha256 "a344b3fb0015fa29a1e42ebe1e6c3f2131090be934e2165626a6813c43876c1e"
+  version "0.2.1"
+  sha256 "262423159c176c253750a01ae105b1a466343d9bb8afd56f87cc20851b58b889"
 
   url "https://github.com/brunovskyoliver/local_flow/releases/download/v#{version}/LocalFlow-#{version}-arm64.zip"
   name "LocalFlow"
@@ -8,7 +8,7 @@ cask "localflow" do
   homepage "https://github.com/brunovskyoliver/local_flow"
 
   depends_on arch: :arm64
-  depends_on macos: ">= :sonoma"
+  depends_on macos: :sonoma
 
   app "LocalFlow.app"
 
