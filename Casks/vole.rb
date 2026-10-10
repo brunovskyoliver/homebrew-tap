@@ -1,6 +1,6 @@
 cask "vole" do
-  version "0.1.0"
-  sha256 "0e80d2106109e56fb79c0540e7bc79e78b67fa6566649aca737fc31c1663e58e"
+  version "0.1.1"
+  sha256 "a52eba4fb535b079434ed411d40b697c2ad34bebb23a5bfe1cfff51a9a9e836a"
 
   url "https://github.com/brunovskyoliver/vole/releases/download/v#{version}/Vole-#{version}-arm64.zip"
   name "Vole"
