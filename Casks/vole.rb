@@ -1,7 +1,10 @@
 cask "vole" do
+  arch arm: "arm64", intel: "x64"
+
   version "0.1.1"
   sha256 arm:          "a52eba4fb535b079434ed411d40b697c2ad34bebb23a5bfe1cfff51a9a9e836a",
-         x86_64_linux: "e812c0fb4b896bbdf0bf82c29c57bb811691c192b514508dba750bd9c1a018d8"
+         arm64_linux:  "839b6c52c84a0269b63ee39a9cdcbd11a0962a229313eef1735155dee4f9db80",
+         x86_64_linux: "3e1020a5275a34eb0efafb01349d5b11549ad22b6fe915c5c86ec7c2e2cfe3fd"
 
   on_macos do
     url "https://github.com/brunovskyoliver/vole/releases/download/v#{version}/Vole-#{version}-arm64.zip"
@@ -19,9 +22,7 @@ cask "vole" do
     end
   end
   on_linux do
-    url "https://github.com/brunovskyoliver/vole/releases/download/v#{version}/vole-#{version}-linux-x64.tar.gz"
-
-    depends_on arch: :x86_64
+    url "https://github.com/brunovskyoliver/vole/releases/download/v#{version}/vole-#{version}-linux-#{arch}.tar.gz"
 
     binary "vole/vole"
     binary "vole/vole-cli"
