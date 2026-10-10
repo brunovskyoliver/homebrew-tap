@@ -1,4 +1,4 @@
-# LocalFlow Homebrew tap
+# brunovskyoliver Homebrew tap
 
 Install LocalFlow on Apple Silicon with:
 
@@ -12,6 +12,17 @@ If macOS blocks the first launch and you trust the download, open System Setting
 Updates may require renewed approval and privacy permissions.
 
 [Installation guide](https://github.com/brunovskyoliver/local_flow/blob/main/docs/distribution/homebrew.md)
+
+## Vole
+
+```sh
+brew install --cask brunovskyoliver/tap/vole
+```
+
+Apple Silicon only. Pulls in Homebrew `llvm` and `lld` for the guest assembler,
+linker and C compiler, and links `vole-cli` onto your `PATH`. Ad-hoc signed and
+not notarized, so the same Open Anyway step applies. The Vole cask is updated by
+hand when a new release is published; the sync workflow below covers LocalFlow only.
 
 ## Maintenance
 
