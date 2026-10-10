@@ -16,8 +16,14 @@ cask "vole" do
   app "Vole.app"
   binary "#{appdir}/Vole.app/Contents/MacOS/vole-cli"
 
+  # Ad-hoc signed, not notarized: macOS kills quarantined copies of vole-cli
+  # outright, so drop the flag on this self-published build.
+  postflight do
+    system_command "/usr/bin/xattr", args: ["-dr", "com.apple.quarantine", "#{appdir}/Vole.app"]
+  end
+
   caveats <<~EOS
-    Vole is ad-hoc signed and not notarized. If macOS blocks the first launch,
-    open System Settings > Privacy & Security and click Open Anyway.
+    Vole is ad-hoc signed and not notarized. The cask clears its quarantine flag
+    so the app and vole-cli start without a Gatekeeper prompt.
   EOS
 end

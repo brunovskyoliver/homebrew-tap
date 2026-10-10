@@ -21,7 +21,7 @@ brew install --cask brunovskyoliver/tap/vole
 
 Apple Silicon only. Pulls in Homebrew `llvm` and `lld` for the guest assembler,
 linker and C compiler, and links `vole-cli` onto your `PATH`. Ad-hoc signed and
-not notarized, so the same Open Anyway step applies. The Vole cask is updated by
+not notarized; the cask clears the quarantine flag so it opens without a prompt. The Vole cask is updated by
 hand when a new release is published; the sync workflow below covers LocalFlow only.
 
 ## Maintenance
