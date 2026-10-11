@@ -19,7 +19,7 @@ Updates may require renewed approval and privacy permissions.
 brew install --cask brunovskyoliver/tap/vole
 ```
 
-macOS on Apple Silicon and Linux x86-64. Pulls in Homebrew `llvm` and `lld` for the guest assembler,
+macOS on Apple Silicon and Linux (x86-64 and arm64). On macOS it pulls in Homebrew `llvm` and `lld` for the guest assembler,
 linker and C compiler, and links `vole-cli` onto your `PATH` (plus `vole` and a desktop launcher on Linux). Ad-hoc signed and
 not notarized; the cask clears the quarantine flag so it opens without a prompt. The Vole cask is updated by
 hand when a new release is published; the sync workflow below covers LocalFlow only.

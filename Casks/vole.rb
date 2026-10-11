@@ -10,6 +10,9 @@ cask "vole" do
     url "https://github.com/brunovskyoliver/vole/releases/download/v#{version}/Vole-#{version}-arm64.zip"
 
     depends_on arch: :arm64
+    # Apple's toolchain has no llvm-mc or ld.lld, which ARM, x86 and C need.
+    depends_on formula: "lld"
+    depends_on formula: "llvm"
     depends_on macos: :ventura
 
     app "Vole.app"
@@ -30,13 +33,15 @@ cask "vole" do
              target: "~/.local/share/applications/dev.vole.Workbench.desktop"
     artifact "vole/vole.png",
              target: "~/.local/share/icons/hicolor/256x256/apps/dev.vole.Workbench.png"
+
+    caveats <<~EOS
+      ARM, x86 and C programs need llvm-mc, ld.lld and clang 14+ on PATH.
+      Install them from your distro, e.g. on Arch:
+        sudo pacman -S llvm lld clang
+    EOS
   end
 
   name "Vole"
   desc "Workbench for assembling, compiling and stepping through machine code"
   homepage "https://github.com/brunovskyoliver/vole"
-
-  # The assembler, linker and C compiler Vole drives.
-  depends_on formula: "lld"
-  depends_on formula: "llvm"
 end
