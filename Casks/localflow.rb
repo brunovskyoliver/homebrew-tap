@@ -1,6 +1,6 @@
 cask "localflow" do
-  version "0.2.2"
-  sha256 "a6954d5ffb0ee92ea3519776b6286b1f0ba85311047cdbfece34d250c502af77"
+  version "0.3.0"
+  sha256 "9b6bb4e5f43a0ab77da8311b4f06b55912e0d0d556101614202f3067e31e570f"
 
   url "https://github.com/brunovskyoliver/local_flow/releases/download/v#{version}/LocalFlow-#{version}-arm64.zip"
   name "LocalFlow"
@@ -20,6 +20,7 @@ cask "localflow" do
       3. Find LocalFlow under Security, click Open Anyway, and confirm.
     Keep Gatekeeper enabled. Managed Macs may not allow this exception.
 
+    In-app updates are disabled; use Homebrew to install new versions.
     After updates, macOS may require approval again. If shortcuts or insertion
     stop working, remove and re-add LocalFlow in Input Monitoring and
     Accessibility, then restart it. Grant Microphone access when prompted.
