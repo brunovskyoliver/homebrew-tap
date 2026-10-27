@@ -23,6 +23,12 @@ jobs:
             exit 0
           fi
           tag="$(jq -r .tagName "$RUNNER_TEMP/release.json")"
+          cask_asset="$(gh release view "$tag" --repo brunovskyoliver/local_flow \
+            --json assets --jq '.assets[] | select(.name == "localflow.rb") | .name')"
+          if [ -z "$cask_asset" ]; then
+            echo "Release $tag has no localflow.rb asset. Leaving the tap unchanged."
+            exit 0
+          fi
           gh release download "$tag" --repo brunovskyoliver/local_flow \
             --pattern localflow.rb --dir "$RUNNER_TEMP/cask"
           ruby -c "$RUNNER_TEMP/cask/localflow.rb"
