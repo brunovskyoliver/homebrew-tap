@@ -1,10 +1,10 @@
 cask "localflow" do
-  version "0.3.2"
-  sha256 "2658f6a914d1885a64e1a9c31138e857703ae0b5c09ecff1c99bb758a8f43986"
+  version "0.4.0"
+  sha256 "ed5c7f27bdf245971e6c377d08ebe49546213d4b2b12146b7c8c2511b4a43fd9"
 
   url "https://github.com/brunovskyoliver/local_flow/releases/download/v#{version}/LocalFlow-#{version}-arm64.zip"
   name "LocalFlow"
-  desc "Local dictation and meeting transcription"
+  desc "Private dictation and meeting notes, on your Mac or your own server"
   homepage "https://github.com/brunovskyoliver/local_flow"
 
   depends_on arch: :arm64
@@ -12,20 +12,25 @@ cask "localflow" do
 
   app "LocalFlow.app"
 
-  caveats <<~EOS
-    LocalFlow is ad-hoc signed, without an Apple Developer ID, and is not notarized.
-    On first launch, macOS may block it. If you trust this download:
-      1. Open LocalFlow from Applications once, then dismiss the warning.
-      2. Open System Settings > Privacy & Security.
-      3. Find LocalFlow under Security, click Open Anyway, and confirm.
-    Keep Gatekeeper enabled. Managed Macs may not allow this exception.
+  # The build is ad-hoc signed and not notarized. Clearing the download quarantine lets it open
+  # without the "Open Anyway" step; Gatekeeper stays on for everything else.
+  postflight do
+    system_command "/usr/bin/xattr", args: ["-dr", "com.apple.quarantine", "#{appdir}/LocalFlow.app"]
+  end
 
-    In-app updates are disabled; use Homebrew to install new versions.
-    After updates, macOS may require approval again. If shortcuts or insertion
-    stop working, remove and re-add LocalFlow in Input Monitoring and
-    Accessibility, then restart it. Grant Microphone access when prompted.
-    Model downloads are handled inside the app, separately from Homebrew.
-    Quit LocalFlow before upgrading or uninstalling. Recordings, models and
-    settings in Application Support are preserved when the app is uninstalled.
+  uninstall quit: "org.localflow.LocalFlow"
+
+  caveats <<~EOS
+    Open LocalFlow from Applications; it lives in the menu bar.
+    Setup asks what you want it for:
+      - Meeting notes: record calls, get transcripts and notes. No shortcut or
+        keyboard permissions.
+      - Dictation: hold a key in any app and talk.
+      - Both.
+    Dictation can be turned on later in Settings.
+    Models download inside the app. With a LocalFlow server, paste the token or link
+    its owner gives you, and nothing is downloaded.
+    Updates come through Homebrew: brew upgrade --cask localflow
+    macOS may ask for permissions again after an upgrade.
   EOS
 end
