@@ -1,6 +1,6 @@
 cask "localflow" do
-  version "0.4.0"
-  sha256 "ed5c7f27bdf245971e6c377d08ebe49546213d4b2b12146b7c8c2511b4a43fd9"
+  version "0.4.1"
+  sha256 "5d9991b6c518a64a6c9bb0b41f835f1e98e46429b1355a1935558f3b645340f5"
 
   url "https://github.com/brunovskyoliver/local_flow/releases/download/v#{version}/LocalFlow-#{version}-arm64.zip"
   name "LocalFlow"
@@ -31,6 +31,8 @@ cask "localflow" do
     Dictation can be turned on later in Settings.
     Models download inside the app. With a LocalFlow server, paste the token or link
     its owner gives you, and nothing is downloaded.
+    Coming from the earlier LocalFlow app? The first launch offers to copy its
+    history, meetings, models and settings.
     Updates come through Homebrew: brew upgrade --cask localflow
     macOS may ask for permissions again after an upgrade.
   EOS
