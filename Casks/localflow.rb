@@ -1,6 +1,6 @@
 cask "localflow" do
-  version "0.4.1"
-  sha256 "5d9991b6c518a64a6c9bb0b41f835f1e98e46429b1355a1935558f3b645340f5"
+  version "0.4.2"
+  sha256 "9937823951fea5bec8e33db9c28c3a3049bc08a9bdd063186f67b46a0dbee622"
 
   url "https://github.com/brunovskyoliver/local_flow/releases/download/v#{version}/LocalFlow-#{version}-arm64.zip"
   name "LocalFlow"
