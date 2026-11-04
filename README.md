@@ -1,15 +1,19 @@
 # brunovskyoliver Homebrew tap
 
-Install LocalFlow on Apple Silicon with:
+Install LocalFlow on a Mac with Apple silicon (macOS 14 or later):
 
 ```sh
 brew install --cask brunovskyoliver/tap/localflow
 ```
 
-LocalFlow is ad-hoc signed without an Apple Developer ID and is not notarized.
-If macOS blocks the first launch and you trust the download, open System Settings
-> Privacy & Security > Open Anyway after attempting to open LocalFlow once.
-Updates may require renewed approval and privacy permissions.
+Open it from Applications; it runs in the menu bar. Setup asks whether you want
+meeting notes, dictation or both, and whether models run on this Mac or on a
+LocalFlow server (paste the token its owner gives you). Meeting notes alone need no
+shortcut or keyboard permissions.
+
+LocalFlow is the Rust desktop app, ad-hoc signed and not notarized. The cask clears
+the quarantine flag so it opens without the Open Anyway step. macOS may ask for
+permissions again after an upgrade.
 
 [Installation guide](https://github.com/brunovskyoliver/local_flow/blob/main/docs/distribution/homebrew.md)
 
