@@ -1,6 +1,6 @@
 cask "localflow" do
-  version "0.4.3"
-  sha256 "53233d2092814b4c52153c0171967afc9d76da8c9a6addcd4cbaff9b895b79bd"
+  version "0.4.5"
+  sha256 "f8ec0f1ca784c65d6a16ba4ca1472ed95fc1e590599f11a3befb80779f69350c"
 
   url "https://github.com/brunovskyoliver/local_flow/releases/download/v#{version}/LocalFlow-#{version}-arm64.zip"
   name "LocalFlow"
@@ -12,7 +12,7 @@ cask "localflow" do
 
   app "LocalFlow.app"
 
-  # The build is ad-hoc signed and not notarized. Clearing the download quarantine lets it open
+  # The build is signed with a development certificate and not notarized. Clearing the download quarantine lets it open
   # without the "Open Anyway" step; Gatekeeper stays on for everything else.
   postflight_steps do
     run "/usr/bin/xattr", args: ["-dr", "com.apple.quarantine", "/Applications/LocalFlow.app"],
@@ -34,6 +34,5 @@ cask "localflow" do
     Coming from the earlier LocalFlow app? The first launch offers to copy its
     history, meetings, models and settings.
     Updates come through Homebrew: brew upgrade --cask localflow
-    macOS may ask for permissions again after an upgrade.
   EOS
 end
